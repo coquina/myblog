@@ -1,0 +1,30 @@
+html,body{
+    margin: 0;
+    height: 100%;
+}
+body{
+    padding: 20px;
+    color: #ffffff;
+    background: url(../img/background.jpg)fixed;
+
+}
+a:link,a:visited{
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+}
+
+a:active , a:hover{
+    background-color: gray;
+}
+
+ul#menu{
+    margin-bottom:30px;
+    text-align: right;
+}
+ul#menu li{
+    display: inline-block;
+}
