@@ -8,7 +8,16 @@
 </head>
 <body>
 {% include 'main/menu.html' %}
+{% if time < 12 %}
+    <h1>早安</h1>>
+{% else   %}
+    <h1>午安</h1>
+{#{% else  %}#}
+{#    <h1>晚安</h1>#}
+{% endif %}
 <h2>Django 說--Hello world!</h2>
 <p>{{ like }}</p>
+<p>{{ time }}</p>
+<p>{{ o }}</p>
 </body>
 </html>
