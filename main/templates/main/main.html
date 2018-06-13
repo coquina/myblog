@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html >
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'main/css/main.css'%}">
-    <title>部落格</title>
-</head>
-<body>
-{% include 'main/menu.html' %}
-{% if time < 12 %}
-    <h1>早安</h1>>
-{% else   %}
-    <h1>午安</h1>
+{% extends 'main/base.html' %}
+{% block heading %}首頁{% endblock %}
+{% block content %}
+    {% if time < 12 %}
+        <h1>早安</h1>>
+    {% elif  12 <= time < 18 %}
+        <h1>午安</h1>
+    {% else   %}
+        <h1>晚安</h1>
 {#{% else  %}#}
 {#    <h1>晚安</h1>#}
-{% endif %}
-<h2>Django 說--Hello world!</h2>
-<p>{{ like }}</p>
-<p>{{ time }}</p>
-<p>{{ o }}</p>
-</body>
-</html>
+    {% endif %}
+    <h2>Django 說--Hello world!</h2>
+    <p>{{ like }}</p>
+    <p>{{ time }}</p>
+    <p>{{ o }}</p>
+{% endblock %}

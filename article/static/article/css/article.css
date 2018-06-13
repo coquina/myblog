@@ -9,11 +9,64 @@
 .commentDiv{
     margin-top:1em;
 }
-.comment{
+.comment, .commentAuthor {
     font-size:0.8em;
 
 }
+
+.commentAuthor{
+    font-weight: bold;
+    color:dodgerblue;
+}
 .commentTime{
     font-size:0.6em;
-    color: lightgray;
+    color: gray;
+}
+input[type=text]{
+    padding: 0.4em;
+}
+/* Table */
+.table  {
+  margin: 0 auto;
+  width: 85%;
+  border-collapse: collapse;
+  /*border: 1px solid black;*/
+    /*border-radius: 10px;*/
+}
+.table ,td ,th{
+    border-radius: 10px;
+
+}
+.table th {
+  font-size: 1.1em;
+  padding: 10px 0 10px 10px;
+    /*border-radius: 10px;*/
+  /*text-align: left;*/
+  background-color: saddlebrown;
+  border-bottom: 1px solid black;
+
+}
+
+.table td {
+  /*color: #222222;*/
+  /*background-color: #e0e0e0;*/
+  padding: 8px 0 10px 5px;
+
+}
+
+/*.table-striped tr:nth-child(even) td {*/
+  /*background-color: black;*/
+/*}*/
+
+.table-hover tr:hover td {
+  background-color: lightslategray;
+}
+
+.like{
+    font-weight:bold;
+    color:#3e7bd1;
+}
+img#like{
+    vertical-align:middle;
+    width:1.6em;
 }

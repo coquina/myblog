@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
+from django.contrib import messages
+from django.urls.base import reverse
 # Create your views here.
 
 def main(request):
@@ -11,20 +13,6 @@ def main(request):
     like = 'Django好棒'
     time = datetime.now()
     return render(request, 'main/main.html', locals())
-# def time(request):
-#     '''
-#
-#     :param request:
-#     :return:
-#     '''
-#     noontime = datetime.now().strptime('12:0:0')
-#     now = datetime.now().strftime('%H:%M:%S')
-#     if now > str(noontime):
-#         show = '午安'
-#         return render(request, 'main/main.html', locals())
-#     else:
-#         show1 = '早安'
-#         return render(request, 'main/main.html', locals())
 
 
 
@@ -35,3 +23,11 @@ def about(request):
     :return:
     '''
     return render(request, 'main/about.html' )
+
+def admin_required(func):
+    def auth(request, *args, **kwargs):
+        if not request.user.is_superuser:
+            messages.error(request, ' 請以管理者身份登入')
+            return redirect(reverse('account:login')+ '?next=' + request.get_full_path())
+        return func(request, *args, **kwargs)
+    return auth
