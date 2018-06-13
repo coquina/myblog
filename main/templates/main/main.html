@@ -3,14 +3,13 @@
 {% block content %}
     {% if time < 12 %}
         <h1>早安</h1>>
-    {% elif  12 <= time < 18 %}
+    {% elif  12 <= time < 17 %}
         <h1>午安</h1>
     {% else   %}
         <h1>晚安</h1>
 {#{% else  %}#}
 {#    <h1>晚安</h1>#}
     {% endif %}
-    <h2>Django 說--Hello world!</h2>
     <p>{{ like }}</p>
     <p>{{ time }}</p>
     <p>{{ o }}</p>

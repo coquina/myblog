@@ -9,7 +9,7 @@
 {% block content%}
     {% include 'article/searchForm.html' %}
     {% if user.is_superuser %}
-        <p class="inlineBlock"><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+        <p class="inlineBlock"><a class="btna" href="{% url 'article:articleCreate' %}">新增文章</a></p>
     {% endif %}
     <br><br><hr>
 
@@ -20,7 +20,7 @@
                 {% if user.is_superuser %}
                     <form class="inlineBlock" method="post" action="{% url 'article:articleDelete' item.id %}">
                         {% csrf_token %}
-                        <input class="btn deleteConfirm" type="submit" value="刪除">
+                        <input class="btna deleteConfirm" type="submit" value="刪除">
                     </form>
                 {% endif %}
                 <p>發表時間：{{ item.pubDateTime|date:'Y-m-d H:i' }}</p>

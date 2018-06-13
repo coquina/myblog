@@ -1,0 +1,17 @@
+.registerDiv{
+
+    width:75%;
+    margin: 40px 100px 10px 100px;
+    padding: 20px;
+    color:black;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 10px ;
+    border: thin solid azure;
+}
+
+.headRegister{
+    text-align: center;
+    font-size: 25px;
+    color:black;
+}

@@ -10,7 +10,7 @@ def main(request):
     :param requeset:
     :return:
     '''
-    like = 'Django好棒'
+
     time = datetime.now()
     return render(request, 'main/main.html', locals())
 
