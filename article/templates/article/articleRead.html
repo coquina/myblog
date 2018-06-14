@@ -1,53 +1,114 @@
-{% extends 'main/base.html' %}
+{% extends 'main/Base.html' %}
 {% load staticfiles %}
-{% block css%}
-   {% include 'article/articlecss.html' %}
+{% block css %}
+    <!-- Syntax Highlighter  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/syntax/shCore.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/syntax/shThemeDefault.css' %}">
 {% endblock %}
-{% block heading %}閱讀文章{% endblock %}
-{% block content %}
 
-  <h3 class="inlineBlock">{{ article.title }}</h3>
-  {% if user.is_superuser %}
-      <a class="btn inlineBlock" href="{% url 'article:articleUpdate' article.id %}">修改</a>
-  {% endif %}
-  <p>發表時間:{{ article.pubDateTime|date:'Y-m-d H:i'}}</p>
-  <div class="articleContent">{{ article.content|linebreaks }}</div>
-    <p class=like>
-      <img id=like src="{% static 'main/img/like.png' %}" alt="Like"> {{ article.likes.count }}
-      {% if user.is_authenticated %}
-        <a href="{% url 'article:articleLike' article.id %}">讚</a>
-      {% endif %}
-    </p>
-  {% for comment in comments %}
-      <div class="commentDiv">
-      <span class="commentAuthor">{{ comment.user.fullName }}</span>
-      {% if comment.user != user %}
-          <span class="comment">{{ comment.content }}</span>
-      {% else %}
-          <form class="inlineBlock" method="post" action="{% url 'article:commentUpdate' comment.id%}">
-              {% csrf_token %}
-              <input type="text" name="comment" value="{{ comment.content }}">
-              <input class="btn" type="submit" value="修改">
-          </form>
-          <form class="inlineBlock" method="post" action="{% url 'article:commentDelete' comment.id %}">
-              {% csrf_token %}
-              <input class="btn deleteconfirm" type="submit" value="刪除">
-          </form>
-      {% endif %}
-          <br>
-          <span class="commentTime">{{ comment.pubDateTime|date:'Y-m-d H:i'}}</span>
-      </div>
-  {% endfor %}
-    {% if user.is_authenticated %}
-      <br>
-      <form method="post" action="{% url 'article:commentCreate' article.id %}">
-        {% csrf_token %}
-        <input type="text" name="comment"  placeholder="留言 ...">
-        <input class="btn" type="submit" value="送出">
-      </form>
-      <br><br>
-    {% endif %}
-{% endblock %}
-{% block script %}
-    <script src="{% static 'main/js/deleteConfirm.js' %}"></script>
-{% endblock %}
+ <!-- Blog Post (Right Sidebar) Start -->
+
+ {% block content %}
+     <div class="col-md-12 page-body">
+         <div class="row">
+
+             <div class="sub-title">
+                 <a href="{% url 'article:article' %}" title="Go to Home Page"><h2>回首頁</h2></a>
+{#               <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>#}
+             </div>
+
+
+             <div class="col-md-12 content-page">
+                 <div class="col-md-12 blog-post">
+
+                     <!-- Post Headline Start -->
+                     <div class="post-title">
+                         <h1>{{ article.title }}</h1>
+                         {% if user.is_superuser %}
+                             <a class="btn inlineBlock" href="{% url 'article:articleUpdate' article.id %}">修改</a>
+                         {% endif %}
+                     </div>
+                     <!-- Post Headline End -->
+
+
+                     <!-- Post Detail Start -->
+                     <div class="post-info">
+                         <span>發表時間:{{ article.pubDateTime|date:'Y-m-d H:i'}}</span>
+                     </div>
+                     <!-- Post Detail End -->
+
+
+                     <p>{{ article.content|linebreaks }}</p>
+                     <p class=like>
+                         <img id=like src="{% static 'main/img/like.png' %}" alt="Like"> {{ article.likes.count }}
+                         {% if user.is_authenticated %}
+                             <a href="{% url 'article:articleLike' article.id %}">讚</a>
+                         {% endif %}
+                     </p>
+
+                 </div>
+             </div>
+             {% for comment in comments %}
+                 <div class="commentDiv">
+                     <span class="commentAuthor">{{ comment.user.fullName }}</span>
+                     {% if comment.user != user %}
+                         <span class="comment">{{ comment.content }}</span>
+                     {% else %}
+                         <form class="inlineBlock" method="post" action="{% url 'article:commentUpdate' comment.id%}">
+                             {% csrf_token %}
+                             <input type="text" name="comment" value="{{ comment.content }}">
+                             <input class="btn" type="submit" value="修改">
+                         </form>
+                         <form class="inlineBlock" method="post" action="{% url 'article:commentDelete' comment.id %}">
+                             {% csrf_token %}
+                             <input class="btn deleteconfirm" type="submit" value="刪除">
+                         </form>
+                     {% endif %}
+                     <br>
+                     <span class="commentTime">{{ comment.pubDateTime|date:'Y-m-d H:i'}}</span>
+                 </div>
+             {% endfor %}
+             {% if user.is_authenticated %}
+                 <br>
+                 <form method="post" action="{% url 'article:commentCreate' article.id %}">
+                     {% csrf_token %}
+                     <input type="text" name="comment"  placeholder="留言 ...">
+                     <input class="btn" type="submit" value="送出">
+                 </form>
+                 <br><br>
+             {% endif %}
+
+         </div>
+     </div>
+ {% endblock %}
+<!-- Blog Post (Right Sidebar) End -->
+
+{#     <!-- Endpage Box (Popup When Scroll Down) Start -->#}
+{#     <div id="scroll-down-popup" class="endpage-box">#}
+{#       <h4>Read Also</h4>#}
+{#       <a href="#">How to make your company website based on bootstrap framework...</a>#}
+{#      </div>#}
+{#      <!-- Endpage Box (Popup When Scroll Down) End -->#}
+
+   {% block script %}
+   <!-- Syntax Highlighter Javascript File  -->
+    <script type="text/javascript" src="{% static 'main/js/syntax/shCore.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushCss.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushJScript.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushPerl.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushPhp.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushPlain.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushPython.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushRuby.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushSql.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushVb.js'%}"></script>
+    <script type="text/javascript" src="{% static 'main/js/syntax/shBrushXml.js'%}"></script>
+
+	<!-- Syntax Highlighter Call Function -->
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'js/syntax/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+
+   {% endblock %}
+
