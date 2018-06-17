@@ -22,7 +22,7 @@ def register(request):
         return render(request, template, {'userForm':userForm})
     userForm.save()
     messages.success(request, '歡迎註冊')
-    return redirect('main:main')
+    return redirect('article:article')
 
 def login(request):
     '''
