@@ -1,21 +1,29 @@
 {% extends 'main/Base.html' %}
 {% block heading %}登入{% endblock %}
 {% block content %}
-    <div class="sub-title">
-        <h2>登入</h2>
-        <a href="{% url 'article:article' %}"><i class="icon-home"></i></a>
-    </div>
-    <hr><br>
+    <div class="col-md-12 page-body">
+      <div class="row">
+{#        <div class="col-md-12 content-page">#}
+          <div class="col-md-12 blog-post">
+            <div class="sub-title">
+              <h2>登入</h2>
+              <a href="{% url 'article:article' %}"><i class="icon-home"></i></a>
+            </div>
+            <hr><br>
 
-    <form method="post" action="{% url 'account:login' %}">
-      {% csrf_token %}
-      <p><input type="text" name="username" class="form-control" placeholder="帳號"></p>
-      {% if nextURL %}
-        <input type="hidden" name="nextURL"  value="{{ nextURL }}">
-      {% endif %}
-      <p><input type="password" name="password" class="form-control" placeholder="密碼"></p>
-      <br><br>
-      <p><input  class="load-more-button" type="submit" value="送出"></p>
-    </form>
+            <form method="post" action="{% url 'account:login' %}">
+              {% csrf_token %}
+              <p><input type="text" name="username" class="form-control" placeholder="帳號"></p>
+              {% if nextURL %}
+                <input type="hidden" name="nextURL"  value="{{ nextURL }}">
+              {% endif %}
+              <p><input type="password" name="password" class="form-control" placeholder="密碼"></p>
+              <br><br>
+              <p><input  class="load-more-button" type="submit" value="送出"></p>
+            </form>
+          </div>
+{#        </div>#}
+      </div>
+    </div>
 {% endblock %}
 
