@@ -1820,6 +1820,31 @@ blockquote {
     font-size:0.8em;
     color: gray;
 }
-input[type=text]{
-    padding: 0.4em;
+/*input[type=text]{*/
+    /*padding: 0.4em;*/
+/*}*/
+
+
+ .searchbar {
+    width: 13px;
+    box-sizing: border-box;
+    border:0;
+    outline: none;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://www.w3schools.com/howto/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    float:left;
+}
+
+.searchbar:focus {
+    width: 300px;
+    border-top: 0;
+    border-right:0;
+    border-left:0;
+    border-bottom: 1px solid #ddd;
 }
