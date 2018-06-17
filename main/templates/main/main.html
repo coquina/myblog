@@ -1,16 +1,29 @@
-{% extends 'main/base.html' %}
+{% extends 'main/Base.html' %}
 {% block heading %}首頁{% endblock %}
 {% block content %}
-    {% if time < 12 %}
-        <h1>早安</h1>>
-    {% elif  12 <= time < 17 %}
-        <h1>午安</h1>
-    {% else   %}
-        <h1>晚安</h1>
-{#{% else  %}#}
-{#    <h1>晚安</h1>#}
-    {% endif %}
-    <p>{{ like }}</p>
-    <p>{{ time }}</p>
-    <p>{{ o }}</p>
+    <div class="col-md-12 page-body">
+         <div class="row">
+              <div class="sub-title">
+                  <h2></h2>
+                  <a href="{% url 'article:article' %}"><i class="icon-home"></i></a>
+              </div>
+             <div class="col-md-12 content-page">
+                 <div class="col-md-12 blog-post">
+                    {% if time < 12 %}
+                        <h1>早安</h1>>
+                    {% elif  12 <= time < 17 %}
+                        <h1>午安</h1>
+                    {% else   %}
+                        <h1>晚安</h1>
+                {#{% else  %}#}
+                {#    <h1>晚安</h1>#}
+                    {% endif %}
+                    <p>{{ like }}</p>
+                    <p>{{ time }}</p>
+                    <p>{{ o }}</p>
+                 </div>
+             </div>
+         </div>
+     </div>
+
 {% endblock %}
