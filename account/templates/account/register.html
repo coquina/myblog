@@ -1,15 +1,39 @@
-{% extends 'main/base.html' %}
+{% extends 'main/Base.html' %}
 {% load staticfiles %}
 {% block heading %} 註冊{% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'account/css/account.css'  %}">
+{#    <link rel="stylesheet" href="{% static 'account/css/account.css'  %}">#}
 {% endblock %}
 {% block content %}
-        <form class="registerDiv" method="post" action="{% url 'account:register' %}">
 
-            <p class="headRegister">註冊</p>
-            {% csrf_token %}
-            {{ userForm.as_p }}
-            <input class="btn" type="submit" value="送出">
-        </form>
+
+
+    <div class="col-md-12 page-body">
+      <div class="row">
+{#        <div class="col-md-12 content-page">#}
+          <div class="col-md-12 blog-post">
+            <div class="sub-title">
+              <h2>註冊</h2>
+              <a href="{% url 'article:article' %}"><i class="icon-home"></i></a>
+            </div>
+            <hr><br>
+
+            <form class="registerDiv" method="post" action="{% url 'account:register' %}">
+              {% csrf_token %}
+              {{ userForm.as_p }}
+              <br><br>
+              <p><input  class="load-more-button" type="submit" value="送出"></p>
+            </form>
+          </div>
+{#        </div>#}
+      </div>
+    </div>
+
+{#        <form class="registerDiv" method="post" action="{% url 'account:register' %}">#}
+{##}
+{#            <p class="headRegister">註冊</p>#}
+{#            {% csrf_token %}#}
+{#            {{ userForm.as_p }}#}
+{#            <input class="btn" type="submit" value="送出">#}
+{#        </form>#}
 {% endblock %}

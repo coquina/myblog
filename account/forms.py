@@ -3,12 +3,12 @@ from account.models import User
 
 
 class UserForm(forms.ModelForm):
-    username = forms.CharField(label='帳號',widget=forms.TextInput(attrs={'class' : 'inlineBlock','placeholder':'帳號'}) )
-    password = forms.CharField(label='密碼', widget=forms.PasswordInput(attrs={'placeholder':'密碼'}))
-    password2 = forms.CharField(label='確認密碼', widget=forms.PasswordInput(attrs={'placeholder':'確認密碼'}))
-    fullName = forms.CharField(label='姓名', max_length=128, widget=forms.TextInput(attrs={'placeholder':'姓名'}))
+    username = forms.CharField(label='',widget=forms.TextInput(attrs={'class':"form-control",'placeholder':'帳號'}) )
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder':'密碼','class':"form-control"}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder':'確認密碼','class':"form-control"}))
+    fullName = forms.CharField(label='', max_length=128, widget=forms.TextInput(attrs={'placeholder':'姓名','class':"form-control"}))
     # website = forms.URLField(label='個人網址', max_length=128)
-    address = forms.CharField(label='住址', max_length=128, widget=forms.TextInput(attrs={'placeholder':'住址'}))
+    address = forms.CharField(label='', max_length=128, widget=forms.TextInput(attrs={'placeholder':'住址','class':"form-control"}))
 
     class Meta:
         model = User
