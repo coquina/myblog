@@ -1848,3 +1848,7 @@ blockquote {
     border-left:0;
     border-bottom: 1px solid #ddd;
 }
+
+.searchTerm{
+    background-image: url('https://www.w3schools.com/howto/searchicon.png');
+}

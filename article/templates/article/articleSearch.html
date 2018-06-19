@@ -1,27 +1,129 @@
-{% extends 'main/base.html' %}
+{% extends 'main/Base.html' %}
 {% load staticfiles %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'article/css/search.css' %}">
 {% endblock %}
 {% block heading %}
   搜尋
 {% endblock %}
 {% block content %}
-  {% include 'article/searchForm.html' %}
-  <br><br><hr>
-  {% if not articles %}
-    <p>查無資料</p>
-  {% else %}
-    <table class="table table-striped table-hover">
-        <tr><th>標題</th><th>發表時間</th></tr>
-        {% for article in articles %}
-        <tr>
-            <td><a class="titleWord" href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></td>
-            <td>{{ article.pubDateTime|date:'Y-m-d H:i' }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-  {% endif %}
+
+
+    <div class="col-md-12 page-body">
+         <div class="row">
+              <div class="sub-title">
+{#                  <h2>關於</h2>#}
+                  <a href="{% url 'article:article' %}"><i class="icon-home"></i></a>
+                  {% include 'article/searchForm.html' %}
+              </div>
+             <div class="col-md-12 content-page">
+                 <div class="col-md-12 blog-post">
+                     {% if not articles %}
+                        <p>查無資料</p>
+                     {% else %}
+                         <main class="main-area">
+
+                           <div class="centered">
+
+                             <section class="cards">
+
+                                 {% for article in articles %}
+
+                                     <article class="card">
+
+                                        <a href="{% url 'article:articleRead' article.id %}">
+
+                                          <div class="card-content">
+
+                                            <h2>{{ article.title }}</h2>
+                                            <p>{{ article.content|linebreaks|truncatechars_html:30 }}</p>
+                                            <p>{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
+
+                                          </div>
+                                          <!-- .card-content -->
+                                        </a>
+
+                                      </article>
+                                      <!-- .card -->
+                                 {% endfor %}
+
+                             </section>
+                               <!-- .cards -->
+                           </div>
+                             <!-- .centered -->
+                        </main>
+                     {% endif %}
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
+{##}
+{#<main class="main-area">#}
+{#  <div class="centered">#}
+{#    <section class="cards">#}
+{#      <article class="card">#}
+{#        <a href="#">#}
+{#          <figure class="thumbnail">#}
+{#          </figure>#}
+{#          <div class="card-content">#}
+{#              <p>12313</p>#}
+{#            <a class="titleWord" href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a>#}
+{#            <p>{{ article.content }}</p>#}
+{#            <p>{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>  #}
+{#          </div>#}
+{#          <!-- .card-content -->#}
+{#        </a>#}
+{#      </article>#}
+
+
+
+{#<main class="main-area">#}
+{##}
+{#  <div class="centered">#}
+{##}
+{#    <section class="cards">#}
+{##}
+{#      <article class="card">#}
+{#        <a href="#">#}
+{#          <div class="card-content">#}
+{#            <h2>Whiskey</h2>#}
+{#            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum explicabo consequatur consectetur fugit molestias perferendis, sint error iste ut, facilis sunt natus optio dolor nesciunt laboriosam obcaecati corporis numquam.</p>#}
+{#          </div>#}
+{#          <!-- .card-content -->#}
+{#        </a>#}
+{#      </article>#}
+{#      <!-- .card -->#}
+{##}
+{##}
+{#    </section>#}
+{#    <!-- .cards -->#}
+{##}
+{#  </div>#}
+{#  <!-- .centered -->#}
+{##}
+{#</main>#}
+
+
+
+
+
+
+
+{#  {% include 'article/searchForm.html' %}#}
+{#  <br><br><hr>#}
+{#  {% if not articles %}#}
+{#    <p>查無資料</p>#}
+{#  {% else %}#}
+{#    <table class="table table-striped table-hover">#}
+{#        <tr><th>標題</th><th>發表時間</th></tr>#}
+{#        {% for article in articles %}#}
+{#        <tr>#}
+{#            <td><a class="titleWord" href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></td>#}
+{#            <td>{{ article.pubDateTime|date:'Y-m-d H:i' }}</td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{#    </table>#}
+{#  {% endif %}#}
 {% endblock %}
-  </body>
-</html>

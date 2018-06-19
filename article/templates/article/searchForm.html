@@ -1,6 +1,6 @@
 <form class="inlineBlock" action="{% url 'article:articleSearch' %}">
     <input type="text" name="searchTerm" {% if searchTerm %} value="{{ searchTerm }}" {% endif %}>
-    <input class="btn" type="submit" value="查詢">
+    <span class="glyphicon glyphicon-name"><input  type="submit" value="查詢"></span>
 </form>
 {#<nav class="collapse navbar-light bg-light">#}
 {#  <form class="form-inline">#}
@@ -8,3 +8,11 @@
 {#    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
 {#  </form>#}
 {#</nav>#}
+
+
+{#<form  action="{% url 'article:articleSearch' %}">#}
+{# <div class="subscribe-form margin-top-20">#}
+{#    <input class="searchbar" type="text" placeholder="搜尋..." name="searchTerm" {% if searchTerm %} value="{{ searchTerm }}" {% endif %}>#}
+{#  <button class="submit-btn" type="submit">查詢</button>#}
+{#  </div>#}
+{#</form>#}
